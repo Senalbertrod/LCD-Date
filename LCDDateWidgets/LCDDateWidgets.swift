@@ -223,31 +223,29 @@ struct MDWidgetView: View {
     var body: some View {
         switch family {
         case .accessoryCircular:
-            ZStack {
-                AccessoryWidgetBackground()
-                VStack(spacing: 0) {
-                    if style.showWeekday {
-                        // Day name on top: THU over 10/01
-                        Text(style.shortWeekday(entry.date))
-                            .font(.system(size: 12, weight: .semibold, design: .monospaced))
-                            .minimumScaleFactor(0.6)
-                            .lineLimit(1)
-                    }
-                    Text(style.monthDay(entry.date))
-                        .font(.system(size: 18, weight: .bold, design: .monospaced))
-                        .minimumScaleFactor(0.5)
+            // No circle behind it, like PM & DST: just the text on the watch face.
+            VStack(spacing: 0) {
+                if style.showWeekday {
+                    // Day name on top: THU over 10/01
+                    Text(style.shortWeekday(entry.date))
+                        .font(.system(size: 12, weight: .semibold, design: .monospaced))
+                        .minimumScaleFactor(0.6)
                         .lineLimit(1)
-                        .widgetAccentable()
-                    if !style.showWeekday {
-                        // Year underneath: 10/01 over 2026
-                        Text(style.year(entry.date))
-                            .font(.system(size: 12, weight: .semibold, design: .monospaced))
-                            .minimumScaleFactor(0.6)
-                            .lineLimit(1)
-                    }
                 }
-                .padding(.horizontal, 3)
+                Text(style.monthDay(entry.date))
+                    .font(.system(size: 18, weight: .bold, design: .monospaced))
+                    .minimumScaleFactor(0.5)
+                    .lineLimit(1)
+                    .widgetAccentable()
+                if !style.showWeekday {
+                    // Year underneath: 10/01 over 2026
+                    Text(style.year(entry.date))
+                        .font(.system(size: 12, weight: .semibold, design: .monospaced))
+                        .minimumScaleFactor(0.6)
+                        .lineLimit(1)
+                }
             }
+            .padding(.horizontal, 3)
 
         case .accessoryRectangular:
             // Always the day name and the full date with the year.
