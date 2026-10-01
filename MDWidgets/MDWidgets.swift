@@ -128,7 +128,7 @@ struct MDProvider: AppIntentTimelineProvider {
     /// On Apple Watch, these appear as ready-made choices when you add the complication.
     func recommendations() -> [AppIntentRecommendation<DateStyleIntent>] {
         func make(_ separator: SeparatorOption, zeros: Bool, shortYear: Bool) -> DateStyleIntent {
-            var intent = DateStyleIntent()
+            let intent = DateStyleIntent()
             intent.separator = separator
             intent.leadingZeros = zeros
             intent.shortYear = shortYear
