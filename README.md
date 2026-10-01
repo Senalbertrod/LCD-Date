@@ -1,4 +1,4 @@
-# M-D
+# Month-Day
 
 <p align="center">
   <img src="docs/icon.png" alt="M-D app icon" width="160">
