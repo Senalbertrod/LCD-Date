@@ -3,7 +3,7 @@
 //  LCDDateWidgets
 //
 //  The LCD Date complications: today's month, day and year as numbers
-//  (month first or day first),
+//  (month first or day first, with the year or the day name),
 //  in a retro digital-watch style.
 //
 
@@ -43,6 +43,16 @@ enum DateOrderOption: String, AppEnum {
     ]
 }
 
+enum ExtraOption: String, AppEnum {
+    case year, weekday
+
+    static var typeDisplayRepresentation: TypeDisplayRepresentation = "Show"
+    static var caseDisplayRepresentations: [ExtraOption: DisplayRepresentation] = [
+        .year: "Year  10/01/2026",
+        .weekday: "Day name  Thursday 10/01",
+    ]
+}
+
 struct DateStyleIntent: WidgetConfigurationIntent {
     static var title: LocalizedStringResource = "Date Style"
     static var description = IntentDescription("Choose how the month, day and year look.")
@@ -55,6 +65,9 @@ struct DateStyleIntent: WidgetConfigurationIntent {
 
     @Parameter(title: "Leading zeros", default: true)
     var leadingZeros: Bool
+
+    @Parameter(title: "Show", default: .year)
+    var extra: ExtraOption
 }
 
 /// Turns a date into "10/01/2026" (or day-first "01/10/2026") text using the chosen style.
@@ -62,6 +75,8 @@ struct DateStyle {
     var dayFirst = false
     var separator = "/"
     var leadingZeros = true
+    /// Show the day name (on top) instead of the year (underneath).
+    var showWeekday = false
 
     init() {}
 
@@ -69,6 +84,7 @@ struct DateStyle {
         dayFirst = intent.order == .dayFirst
         separator = intent.separator.symbol
         leadingZeros = intent.leadingZeros
+        showWeekday = intent.extra == .weekday
     }
 
     /// Always the regular month/day/year calendar, in whatever time zone
@@ -102,13 +118,24 @@ struct DateStyle {
     /// "10/01/2026" month first, or "01/10/2026" day first. The year is always last.
     func full(_ date: Date) -> String { monthDay(date) + separator + year(date) }
 
-    func weekday(_ date: Date) -> String {
+    /// "THURSDAY" in the watch's language.
+    func weekday(_ date: Date) -> String { weekdayName(date, format: "EEEE") }
+
+    /// "THU", for the small round complication.
+    func shortWeekday(_ date: Date) -> String { weekdayName(date, format: "EEE") }
+
+    private func weekdayName(_ date: Date, format: String) -> String {
         let f = DateFormatter()
         f.calendar = DateStyle.calendar
         f.locale = Locale.autoupdatingCurrent
         f.timeZone = TimeZone.autoupdatingCurrent
-        f.dateFormat = "EEEE"
+        f.dateFormat = format
         return f.string(from: date).uppercased()
+    }
+
+    /// One line: "10/01/2026", or "THURSDAY 10/01" when showing the day name.
+    func line(_ date: Date) -> String {
+        showWeekday ? weekday(date) + " " + monthDay(date) : full(date)
     }
 }
 
@@ -152,30 +179,36 @@ struct MDProvider: AppIntentTimelineProvider {
 
     /// On Apple Watch, these appear as ready-made choices when you add the complication.
     func recommendations() -> [AppIntentRecommendation<DateStyleIntent>] {
-        func make(_ separator: SeparatorOption, zeros: Bool,
-                  order: DateOrderOption = .monthFirst) -> DateStyleIntent {
+        func make(_ separator: SeparatorOption, zeros: Bool, weekday: Bool,
+                  order: DateOrderOption) -> DateStyleIntent {
             let intent = DateStyleIntent()
             intent.order = order
             intent.separator = separator
             intent.leadingZeros = zeros
+            intent.extra = weekday ? .weekday : .year
             return intent
         }
-        // Each style with zeros, then right next to it the same style without zeros.
-        return [
-            AppIntentRecommendation(intent: make(.slash, zeros: true), description: "Month first 10/01/2026"),
-            AppIntentRecommendation(intent: make(.slash, zeros: false), description: "Month first 10/1/2026"),
-            AppIntentRecommendation(intent: make(.dash, zeros: true), description: "Month first 10-01-2026"),
-            AppIntentRecommendation(intent: make(.dash, zeros: false), description: "Month first 10-1-2026"),
-            AppIntentRecommendation(intent: make(.dot, zeros: true), description: "Month first 10.01.2026"),
-            AppIntentRecommendation(intent: make(.dot, zeros: false), description: "Month first 10.1.2026"),
-            // Day first (day/month/year), as used in most of the world
-            AppIntentRecommendation(intent: make(.slash, zeros: true, order: .dayFirst), description: "Day first 01/10/2026"),
-            AppIntentRecommendation(intent: make(.slash, zeros: false, order: .dayFirst), description: "Day first 1/10/2026"),
-            AppIntentRecommendation(intent: make(.dash, zeros: true, order: .dayFirst), description: "Day first 01-10-2026"),
-            AppIntentRecommendation(intent: make(.dash, zeros: false, order: .dayFirst), description: "Day first 1-10-2026"),
-            AppIntentRecommendation(intent: make(.dot, zeros: true, order: .dayFirst), description: "Day first 01.10.2026"),
-            AppIntentRecommendation(intent: make(.dot, zeros: false, order: .dayFirst), description: "Day first 1.10.2026"),
-        ]
+        // For each order and separator, four choices side by side:
+        // with zeros + year, with zeros + day name, no zeros + year, no zeros + day name.
+        // The descriptions use Thursday, October 1, 2026 as the example.
+        var list: [AppIntentRecommendation<DateStyleIntent>] = []
+        for order in [DateOrderOption.monthFirst, .dayFirst] {
+            let label = order == .monthFirst ? "Month first" : "Day first"
+            for separator in [SeparatorOption.slash, .dash, .dot] {
+                let sep = separator.symbol
+                for zeros in [true, false] {
+                    let month = "10", day = zeros ? "01" : "1"
+                    let md = order == .monthFirst ? month + sep + day : day + sep + month
+                    list.append(AppIntentRecommendation(
+                        intent: make(separator, zeros: zeros, weekday: false, order: order),
+                        description: Text(verbatim: "\(label) \(md)\(sep)2026")))
+                    list.append(AppIntentRecommendation(
+                        intent: make(separator, zeros: zeros, weekday: true, order: order),
+                        description: Text(verbatim: "\(label) Thursday \(md)")))
+                }
+            }
+        }
+        return list
     }
 }
 
@@ -193,20 +226,31 @@ struct MDWidgetView: View {
             ZStack {
                 AccessoryWidgetBackground()
                 VStack(spacing: 0) {
+                    if style.showWeekday {
+                        // Day name on top: THU over 10/01
+                        Text(style.shortWeekday(entry.date))
+                            .font(.system(size: 12, weight: .semibold, design: .monospaced))
+                            .minimumScaleFactor(0.6)
+                            .lineLimit(1)
+                    }
                     Text(style.monthDay(entry.date))
                         .font(.system(size: 18, weight: .bold, design: .monospaced))
                         .minimumScaleFactor(0.5)
                         .lineLimit(1)
                         .widgetAccentable()
-                    Text(style.year(entry.date))
-                        .font(.system(size: 12, weight: .semibold, design: .monospaced))
-                        .minimumScaleFactor(0.6)
-                        .lineLimit(1)
+                    if !style.showWeekday {
+                        // Year underneath: 10/01 over 2026
+                        Text(style.year(entry.date))
+                            .font(.system(size: 12, weight: .semibold, design: .monospaced))
+                            .minimumScaleFactor(0.6)
+                            .lineLimit(1)
+                    }
                 }
                 .padding(.horizontal, 3)
             }
 
         case .accessoryRectangular:
+            // Always the day name and the full date with the year.
             VStack(alignment: .leading, spacing: 1) {
                 Text(style.weekday(entry.date))
                     .font(.system(size: 12, weight: .semibold, design: .monospaced))
@@ -226,11 +270,11 @@ struct MDWidgetView: View {
                 .minimumScaleFactor(0.5)
                 .widgetAccentable()
                 .widgetLabel {
-                    Text(style.year(entry.date))
+                    Text(style.showWeekday ? style.weekday(entry.date) : style.year(entry.date))
                 }
 
         default: // .accessoryInline
-            Text(style.full(entry.date))
+            Text(style.line(entry.date))
         }
     }
 }
