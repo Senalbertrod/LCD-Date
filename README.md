@@ -4,7 +4,7 @@
   <img src="docs/icon.png" alt="M-D app icon" width="160">
 </p>
 
-**M-D** (Month-Day) is a tiny Apple Watch app that puts today's date on your watch face as plain numbers, in a retro digital-watch style: month first like `10/01/2026`, or day first like `01/10/2026`.
+Month-Day is a tiny Apple Watch app that puts today's date on your watch face as plain numbers, in a retro digital-watch style: month first like `10/01/2026`, or day first like `01/10/2026`.
 
 ![M-D complications on a watch face](docs/complications.png)
 
