@@ -19,14 +19,16 @@
 | **Corner** | `10/01`, with the year on the curved label |
 | **Inline** | `10/01/2026` |
 
-When you add the complication, pick the style you like. Examples are for October 1, 2026:
+When you add the complication, pick the style you like. Every style comes with and without leading zeros (for March 5: `03/05/2026` or `3/5/2026`). Examples are for October 1, 2026:
 
 | Style | Month first | Day first |
 |---|---|---|
 | Slash | `10/01/2026` | `01/10/2026` |
+| Slash, no zeros | `10/1/2026` | `1/10/2026` |
 | Dash | `10-01-2026` | `01-10-2026` |
+| Dash, no zeros | `10-1-2026` | `1-10-2026` |
 | Dot | `10.01.2026` | `01.10.2026` |
-| No leading zeros | `10/1/2026` | `1/10/2026` |
+| Dot, no zeros | `10.1.2026` | `1.10.2026` |
 
 - **Flips at your local midnight, anywhere.** The complication checks in every 15 minutes and always uses the watch's *current* time zone. Every time zone on Earth is a multiple of 15 minutes from UTC, so the date changes at exactly 12:00 AM local time, even right after you fly to another country, including half-hour zones like India and Nepal's +5:45.
 - **Always month/day/year.** It uses the regular (Gregorian) calendar even if your watch is set to a different calendar system, so the numbers are never confusing.

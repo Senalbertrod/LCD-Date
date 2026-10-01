@@ -160,16 +160,21 @@ struct MDProvider: AppIntentTimelineProvider {
             intent.leadingZeros = zeros
             return intent
         }
+        // Each style with zeros, then right next to it the same style without zeros.
         return [
             AppIntentRecommendation(intent: make(.slash, zeros: true), description: "Month first 10/01/2026"),
-            AppIntentRecommendation(intent: make(.dash, zeros: true), description: "Month first 10-01-2026"),
-            AppIntentRecommendation(intent: make(.dot, zeros: true), description: "Month first 10.01.2026"),
             AppIntentRecommendation(intent: make(.slash, zeros: false), description: "Month first 10/1/2026"),
+            AppIntentRecommendation(intent: make(.dash, zeros: true), description: "Month first 10-01-2026"),
+            AppIntentRecommendation(intent: make(.dash, zeros: false), description: "Month first 10-1-2026"),
+            AppIntentRecommendation(intent: make(.dot, zeros: true), description: "Month first 10.01.2026"),
+            AppIntentRecommendation(intent: make(.dot, zeros: false), description: "Month first 10.1.2026"),
             // Day first (day/month/year), as used in most of the world
             AppIntentRecommendation(intent: make(.slash, zeros: true, order: .dayFirst), description: "Day first 01/10/2026"),
-            AppIntentRecommendation(intent: make(.dash, zeros: true, order: .dayFirst), description: "Day first 01-10-2026"),
-            AppIntentRecommendation(intent: make(.dot, zeros: true, order: .dayFirst), description: "Day first 01.10.2026"),
             AppIntentRecommendation(intent: make(.slash, zeros: false, order: .dayFirst), description: "Day first 1/10/2026"),
+            AppIntentRecommendation(intent: make(.dash, zeros: true, order: .dayFirst), description: "Day first 01-10-2026"),
+            AppIntentRecommendation(intent: make(.dash, zeros: false, order: .dayFirst), description: "Day first 1-10-2026"),
+            AppIntentRecommendation(intent: make(.dot, zeros: true, order: .dayFirst), description: "Day first 01.10.2026"),
+            AppIntentRecommendation(intent: make(.dot, zeros: false, order: .dayFirst), description: "Day first 1.10.2026"),
         ]
     }
 }
