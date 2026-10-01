@@ -37,7 +37,10 @@ struct ContentView: View {
     }
 
     private func lcd(for date: Date) -> some View {
-        let parts = Calendar.autoupdatingCurrent.dateComponents([.year, .month, .day], from: date)
+        // Regular month/day/year calendar in the watch's current time zone
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone.autoupdatingCurrent
+        let parts = calendar.dateComponents([.year, .month, .day], from: date)
         let month = String(format: "%02d", parts.month ?? 1)
         let day = String(format: "%02d", parts.day ?? 1)
         let year = String(parts.year ?? 2000)
@@ -77,6 +80,7 @@ struct ContentView: View {
 
     private func weekday(_ date: Date) -> String {
         let f = DateFormatter()
+        f.calendar = Calendar(identifier: .gregorian)
         f.locale = Locale.autoupdatingCurrent
         f.timeZone = TimeZone.autoupdatingCurrent
         f.dateFormat = "EEEE"

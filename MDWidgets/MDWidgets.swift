@@ -60,8 +60,16 @@ struct DateStyle {
         shortYear = intent.shortYear
     }
 
+    /// Always the regular month/day/year calendar, in whatever time zone
+    /// the watch is in right now (it updates itself when you travel).
+    static var calendar: Calendar {
+        var cal = Calendar(identifier: .gregorian)
+        cal.timeZone = TimeZone.autoupdatingCurrent
+        return cal
+    }
+
     private func parts(_ date: Date) -> (month: Int, day: Int, year: Int) {
-        let c = Calendar.autoupdatingCurrent.dateComponents([.year, .month, .day], from: date)
+        let c = DateStyle.calendar.dateComponents([.year, .month, .day], from: date)
         return (c.month ?? 1, c.day ?? 1, c.year ?? 2000)
     }
 
@@ -86,6 +94,7 @@ struct DateStyle {
 
     func weekday(_ date: Date) -> String {
         let f = DateFormatter()
+        f.calendar = DateStyle.calendar
         f.locale = Locale.autoupdatingCurrent
         f.timeZone = TimeZone.autoupdatingCurrent
         f.dateFormat = "EEEE"
@@ -109,18 +118,24 @@ struct MDProvider: AppIntentTimelineProvider {
         MDEntry(date: Date(), style: DateStyle(configuration))
     }
 
-    /// One entry now, then one at each of the next 7 midnights, so the date
-    /// flips right at 12:00 AM with almost no battery use.
+    /// An entry every 15 minutes for the next 24 hours, then a fresh timeline.
+    ///
+    /// Why not just one entry per midnight? Midnight depends on the time zone.
+    /// If you fly to another country, midnights planned for the old time zone
+    /// would flip the date hours late. Every time zone on Earth is a multiple
+    /// of 15 minutes from UTC, and each entry is drawn using the watch's
+    /// *current* time zone, so the date always flips at your local midnight,
+    /// wherever you are. 97 tiny entries a day is still very light on battery.
     func timeline(for configuration: DateStyleIntent, in context: Context) async -> Timeline<MDEntry> {
         let style = DateStyle(configuration)
-        let calendar = Calendar.autoupdatingCurrent
         let now = Date()
         var entries = [MDEntry(date: now, style: style)]
-        let today = calendar.startOfDay(for: now)
-        for offset in 1...7 {
-            if let midnight = calendar.date(byAdding: .day, value: offset, to: today) {
-                entries.append(MDEntry(date: midnight, style: style))
-            }
+
+        // Line up with the next quarter hour (:00, :15, :30, :45) in UTC.
+        let quarter: TimeInterval = 15 * 60
+        let nextQuarter = Date(timeIntervalSince1970: (now.timeIntervalSince1970 / quarter).rounded(.down) * quarter + quarter)
+        for step in 0..<96 {
+            entries.append(MDEntry(date: nextQuarter.addingTimeInterval(Double(step) * quarter), style: style))
         }
         return Timeline(entries: entries, policy: .atEnd)
     }

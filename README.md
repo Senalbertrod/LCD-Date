@@ -29,8 +29,8 @@ When you add the complication, pick the style you like:
 | Dot, short year | `10.01.26` |
 | No leading zeros | `10/1/2026` |
 
-- **Updates at midnight.** The date flips right at 12:00 AM, with a week of updates scheduled ahead for minimal battery use.
-- **Follows your time zone.** It uses the watch's own time zone, so it stays correct when you travel.
+- **Flips at your local midnight, anywhere.** The complication checks in every 15 minutes and always uses the watch's *current* time zone. Every time zone on Earth is a multiple of 15 minutes from UTC, so the date changes at exactly 12:00 AM local time, even right after you fly to another country, including half-hour zones like India and Nepal's +5:45.
+- **Always month/day/year.** It uses the regular (Gregorian) calendar even if your watch is set to a different calendar system, so the numbers are never confusing.
 - **Retro look.** Monospaced digits tinted LCD green, which follows your watch face's color when the face is tinted.
 
 ### Watch app
