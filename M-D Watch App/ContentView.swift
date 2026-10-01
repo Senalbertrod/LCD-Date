@@ -11,6 +11,8 @@ import Foundation
 import SwiftUI
 
 struct ContentView: View {
+    /// Tap the date to switch between month first (10/01) and day first (01/10).
+    @AppStorage("dayFirst") private var dayFirst = false
     private let lcdGreen = Color(red: 0.376, green: 1.0, blue: 0.573)
     private let lcdDim = Color(red: 0.376, green: 1.0, blue: 0.573).opacity(0.12)
 
@@ -20,12 +22,13 @@ struct ContentView: View {
                 TimelineView(.everyMinute) { context in
                     lcd(for: context.date)
                 }
+                .onTapGesture { dayFirst.toggle() }
 
                 VStack(alignment: .leading, spacing: 6) {
                     Text("ADD TO WATCH FACE")
                         .font(.system(size: 12, weight: .bold, design: .monospaced))
                         .foregroundStyle(lcdGreen)
-                    Text("1. Touch and hold your watch face.\n2. Tap Edit, then swipe to Complications.\n3. Tap a slot and choose M-D.\n4. Pick a style: 10/01/2026, 10-01-2026, 10.01.2026, 10.01.26 or 10/1/2026.")
+                    Text("1. Touch and hold your watch face.\n2. Tap Edit, then swipe to Complications.\n3. Tap a slot and choose M-D.\n4. Pick a style: month first like 10/01/2026, or day first like 01/10/2026, with slashes, dashes or dots.\n\nTip: tap the date above to switch the order here.")
                         .font(.system(size: 13))
                         .foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
@@ -53,7 +56,7 @@ struct ContentView: View {
                 // Faint "88/88" behind the digits, like an unlit LCD segment
                 Text("88/88")
                     .foregroundStyle(lcdDim)
-                Text("\(month)/\(day)")
+                Text(dayFirst ? "\(day)/\(month)" : "\(month)/\(day)")
                     .foregroundStyle(lcdGreen)
                     .shadow(color: lcdGreen.opacity(0.6), radius: 6)
             }
@@ -63,6 +66,9 @@ struct ContentView: View {
             Text(year)
                 .font(.system(size: 24, weight: .bold, design: .monospaced))
                 .foregroundStyle(lcdGreen.opacity(0.85))
+            Text(dayFirst ? "DAY / MONTH" : "MONTH / DAY")
+                .font(.system(size: 10, weight: .semibold, design: .monospaced))
+                .foregroundStyle(lcdGreen.opacity(0.45))
         }
         .padding(.vertical, 10)
         .frame(maxWidth: .infinity)
