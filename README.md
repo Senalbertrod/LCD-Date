@@ -51,25 +51,26 @@ A retro LCD-style screen showing today's date and day of the week, with quick st
 
 ## Build & run
 
-1. Open `M-D.xcodeproj` in Xcode.
-2. Under **Signing & Capabilities**, choose your own Team for both targets: **M-D Watch App** and **MDWidgetsExtension**. Change the bundle identifiers if needed.
-3. Pick the **M-D Watch App** scheme and your Apple Watch (or a watch simulator), then press **▶ Run**.
+1. Open `LCD Date.xcodeproj` in Xcode.
+2. Under **Signing & Capabilities**, choose your own Team for both targets: **LCD Date Watch App** and **LCDDateWidgetsExtension**. Change the bundle identifiers if needed.
+3. Pick the **LCD Date Watch App** scheme and your Apple Watch (or a watch simulator), then press **▶ Run**.
 4. Add the complication to a watch face (see above).
 
 ## Project structure
 
-The Xcode project and folders still use the app's original working name, **M-D** (Month-Day).
-
 ```
-M-D Watch App/          The watch app (retro LCD date screen)
+LCD Date Watch App/       The watch app (retro LCD date screen)
   ContentView.swift
-  M_DApp.swift
-  Assets.xcassets/      App icon and accent color
-MDWidgets/              WidgetKit extension with the complications
-  MDWidgets.swift       Date styles, timeline, complication views
+  LCDDateApp.swift
+  Assets.xcassets/        App icon and accent color
+LCDDateWidgets/           WidgetKit extension with the complications
+  LCDDateWidgets.swift    Date styles, timeline, complication views
   Info.plist
-docs/                   Images for this README
+LCD Date.xcodeproj/       Xcode project
+docs/                     Images for this README
 ```
+
+The bundle identifiers (`com.senalbert.M-D.watchkitapp`) keep the app's original working name, M-D. They're never shown to users, and keeping them means watches that already have the app installed update it instead of treating it as a new app.
 
 ## Privacy
 

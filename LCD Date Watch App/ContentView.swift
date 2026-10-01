@@ -1,9 +1,9 @@
 //
 //  ContentView.swift
-//  M-D Watch App
+//  LCD Date Watch App
 //
 //  A retro LCD date display. The main event is the complication
-//  (see the MDWidgets folder); this screen shows today's date and
+//  (see the LCDDateWidgets folder); this screen shows today's date and
 //  how to put it on a watch face.
 //
 

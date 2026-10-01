@@ -1,6 +1,6 @@
 //
-//  MDWidgets.swift
-//  MDWidgets
+//  LCDDateWidgets.swift
+//  LCDDateWidgets
 //
 //  The LCD Date complications: today's month, day and year as numbers
 //  (month first or day first),

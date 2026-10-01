@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		15C37602306DED0600F34D59 /* MDWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 15C37601306DED0600F34D59 /* MDWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		15C37602306DED0600F34D59 /* LCDDateWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 15C37601306DED0600F34D59 /* LCDDateWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -16,7 +16,7 @@
 			containerPortal = 15C375B9306DED0600F34D59 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 15C3760A306DED0600F34D59;
-			remoteInfo = MDWidgetsExtension;
+			remoteInfo = LCDDateWidgetsExtension;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -27,7 +27,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				15C37602306DED0600F34D59 /* MDWidgetsExtension.appex in Embed Foundation Extensions */,
+				15C37602306DED0600F34D59 /* LCDDateWidgetsExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -35,32 +35,32 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		15C375C5306DED0600F34D59 /* M-D Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "M-D Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		15C37601306DED0600F34D59 /* MDWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MDWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		15C375C5306DED0600F34D59 /* LCD Date Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LCD Date Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		15C37601306DED0600F34D59 /* LCDDateWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LCDDateWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		15C37605306DED0600F34D59 /* Exceptions for "MDWidgets" folder in "MDWidgetsExtension" target */ = {
+		15C37605306DED0600F34D59 /* Exceptions for "LCDDateWidgets" folder in "LCDDateWidgetsExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = 15C3760A306DED0600F34D59 /* MDWidgetsExtension */;
+			target = 15C3760A306DED0600F34D59 /* LCDDateWidgetsExtension */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		15C375C9306DED0600F34D59 /* M-D Watch App */ = {
+		15C375C9306DED0600F34D59 /* LCD Date Watch App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "M-D Watch App";
+			path = "LCD Date Watch App";
 			sourceTree = "<group>";
 		};
-		15C37606306DED0600F34D59 /* MDWidgets */ = {
+		15C37606306DED0600F34D59 /* LCDDateWidgets */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				15C37605306DED0600F34D59 /* Exceptions for "MDWidgets" folder in "MDWidgetsExtension" target */,
+				15C37605306DED0600F34D59 /* Exceptions for "LCDDateWidgets" folder in "LCDDateWidgetsExtension" target */,
 			);
-			path = MDWidgets;
+			path = LCDDateWidgets;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -82,8 +82,8 @@
 		15C375B8306DED0600F34D59 = {
 			isa = PBXGroup;
 			children = (
-				15C375C9306DED0600F34D59 /* M-D Watch App */,
-				15C37606306DED0600F34D59 /* MDWidgets */,
+				15C375C9306DED0600F34D59 /* LCD Date Watch App */,
+				15C37606306DED0600F34D59 /* LCDDateWidgets */,
 				15C375C0306DED0600F34D59 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -91,8 +91,8 @@
 		15C375C0306DED0600F34D59 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				15C375C5306DED0600F34D59 /* M-D Watch App.app */,
-				15C37601306DED0600F34D59 /* MDWidgetsExtension.appex */,
+				15C375C5306DED0600F34D59 /* LCD Date Watch App.app */,
+				15C37601306DED0600F34D59 /* LCDDateWidgetsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,9 +100,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		15C375C4306DED0600F34D59 /* M-D Watch App */ = {
+		15C375C4306DED0600F34D59 /* LCD Date Watch App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 15C375D2306DED0600F34D59 /* Build configuration list for PBXNativeTarget "M-D Watch App" */;
+			buildConfigurationList = 15C375D2306DED0600F34D59 /* Build configuration list for PBXNativeTarget "LCD Date Watch App" */;
 			buildPhases = (
 				15C375C1306DED0600F34D59 /* Sources */,
 				15C375C2306DED0600F34D59 /* Frameworks */,
@@ -115,16 +115,16 @@
 				15C3760B306DED0600F34D59 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				15C375C9306DED0600F34D59 /* M-D Watch App */,
+				15C375C9306DED0600F34D59 /* LCD Date Watch App */,
 			);
-			name = "M-D Watch App";
-			productName = "M-D Watch App";
-			productReference = 15C375C5306DED0600F34D59 /* M-D Watch App.app */;
+			name = "LCD Date Watch App";
+			productName = "LCD Date Watch App";
+			productReference = 15C375C5306DED0600F34D59 /* LCD Date Watch App.app */;
 			productType = "com.apple.product-type.application";
 		};
-		15C3760A306DED0600F34D59 /* MDWidgetsExtension */ = {
+		15C3760A306DED0600F34D59 /* LCDDateWidgetsExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 15C3760E306DED0600F34D59 /* Build configuration list for PBXNativeTarget "MDWidgetsExtension" */;
+			buildConfigurationList = 15C3760E306DED0600F34D59 /* Build configuration list for PBXNativeTarget "LCDDateWidgetsExtension" */;
 			buildPhases = (
 				15C37609306DED0600F34D59 /* Sources */,
 				15C37607306DED0600F34D59 /* Frameworks */,
@@ -135,11 +135,11 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				15C37606306DED0600F34D59 /* MDWidgets */,
+				15C37606306DED0600F34D59 /* LCDDateWidgets */,
 			);
-			name = MDWidgetsExtension;
-			productName = MDWidgetsExtension;
-			productReference = 15C37601306DED0600F34D59 /* MDWidgetsExtension.appex */;
+			name = LCDDateWidgetsExtension;
+			productName = LCDDateWidgetsExtension;
+			productReference = 15C37601306DED0600F34D59 /* LCDDateWidgetsExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -160,7 +160,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 15C375BC306DED0600F34D59 /* Build configuration list for PBXProject "M-D" */;
+			buildConfigurationList = 15C375BC306DED0600F34D59 /* Build configuration list for PBXProject "LCD Date" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -174,8 +174,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				15C375C4306DED0600F34D59 /* M-D Watch App */,
-				15C3760A306DED0600F34D59 /* MDWidgetsExtension */,
+				15C375C4306DED0600F34D59 /* LCD Date Watch App */,
+				15C3760A306DED0600F34D59 /* LCDDateWidgetsExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -209,13 +209,13 @@
 /* Begin PBXTargetDependency section */
 		15C3760B306DED0600F34D59 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 15C3760A306DED0600F34D59 /* MDWidgetsExtension */;
+			target = 15C3760A306DED0600F34D59 /* LCDDateWidgetsExtension */;
 			targetProxy = 15C37603306DED0600F34D59 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		15C375D0306DED0600F34D59 /* Debug configuration for PBXProject "M-D" */ = {
+		15C375D0306DED0600F34D59 /* Debug configuration for PBXProject "LCD Date" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -277,7 +277,7 @@
 			};
 			name = Debug;
 		};
-		15C375D1306DED0600F34D59 /* Release configuration for PBXProject "M-D" */ = {
+		15C375D1306DED0600F34D59 /* Release configuration for PBXProject "LCD Date" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -331,7 +331,7 @@
 			};
 			name = Release;
 		};
-		15C375D3306DED0600F34D59 /* Debug configuration for PBXNativeTarget "M-D Watch App" */ = {
+		15C375D3306DED0600F34D59 /* Debug configuration for PBXNativeTarget "LCD Date Watch App" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -365,7 +365,7 @@
 			};
 			name = Debug;
 		};
-		15C375D4306DED0600F34D59 /* Release configuration for PBXNativeTarget "M-D Watch App" */ = {
+		15C375D4306DED0600F34D59 /* Release configuration for PBXNativeTarget "LCD Date Watch App" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -400,7 +400,7 @@
 			};
 			name = Release;
 		};
-		15C3760C306DED0600F34D59 /* Debug configuration for PBXNativeTarget "MDWidgetsExtension" */ = {
+		15C3760C306DED0600F34D59 /* Debug configuration for PBXNativeTarget "LCDDateWidgetsExtension" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -409,7 +409,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8W85QPUG6S;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MDWidgets/Info.plist;
+				INFOPLIST_FILE = LCDDateWidgets/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "LCD Date";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -433,7 +433,7 @@
 			};
 			name = Debug;
 		};
-		15C3760D306DED0600F34D59 /* Release configuration for PBXNativeTarget "MDWidgetsExtension" */ = {
+		15C3760D306DED0600F34D59 /* Release configuration for PBXNativeTarget "LCDDateWidgetsExtension" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -442,7 +442,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8W85QPUG6S;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MDWidgets/Info.plist;
+				INFOPLIST_FILE = LCDDateWidgets/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "LCD Date";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -470,27 +470,27 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		15C375BC306DED0600F34D59 /* Build configuration list for PBXProject "M-D" */ = {
+		15C375BC306DED0600F34D59 /* Build configuration list for PBXProject "LCD Date" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				15C375D0306DED0600F34D59 /* Debug configuration for PBXProject "M-D" */,
-				15C375D1306DED0600F34D59 /* Release configuration for PBXProject "M-D" */,
+				15C375D0306DED0600F34D59 /* Debug configuration for PBXProject "LCD Date" */,
+				15C375D1306DED0600F34D59 /* Release configuration for PBXProject "LCD Date" */,
 			);
 			defaultConfigurationName = Release;
 		};
-		15C375D2306DED0600F34D59 /* Build configuration list for PBXNativeTarget "M-D Watch App" */ = {
+		15C375D2306DED0600F34D59 /* Build configuration list for PBXNativeTarget "LCD Date Watch App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				15C375D3306DED0600F34D59 /* Debug configuration for PBXNativeTarget "M-D Watch App" */,
-				15C375D4306DED0600F34D59 /* Release configuration for PBXNativeTarget "M-D Watch App" */,
+				15C375D3306DED0600F34D59 /* Debug configuration for PBXNativeTarget "LCD Date Watch App" */,
+				15C375D4306DED0600F34D59 /* Release configuration for PBXNativeTarget "LCD Date Watch App" */,
 			);
 			defaultConfigurationName = Release;
 		};
-		15C3760E306DED0600F34D59 /* Build configuration list for PBXNativeTarget "MDWidgetsExtension" */ = {
+		15C3760E306DED0600F34D59 /* Build configuration list for PBXNativeTarget "LCDDateWidgetsExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				15C3760C306DED0600F34D59 /* Debug configuration for PBXNativeTarget "MDWidgetsExtension" */,
-				15C3760D306DED0600F34D59 /* Release configuration for PBXNativeTarget "MDWidgetsExtension" */,
+				15C3760C306DED0600F34D59 /* Debug configuration for PBXNativeTarget "LCDDateWidgetsExtension" */,
+				15C3760D306DED0600F34D59 /* Release configuration for PBXNativeTarget "LCDDateWidgetsExtension" */,
 			);
 			defaultConfigurationName = Release;
 		};
