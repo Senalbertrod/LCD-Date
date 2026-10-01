@@ -1,12 +1,12 @@
-# Month-Day
+# LCD Date
 
 <p align="center">
-  <img src="docs/icon.png" alt="M-D app icon" width="160">
+  <img src="docs/icon.png" alt="LCD Date app icon" width="160">
 </p>
 
-Month-Day is a tiny Apple Watch app that puts today's date on your watch face as plain numbers, in a retro digital-watch style: month first like `10/01/2026`, or day first like `01/10/2026`.
+**LCD Date** is a tiny Apple Watch app that puts today's date on your watch face as plain numbers, in a retro digital-watch style: month first like `10/01/2026`, or day first like `01/10/2026`.
 
-![M-D complications on a watch face](docs/complications.png)
+![LCD Date complications on a watch face](docs/complications.png)
 
 ## Features
 
@@ -41,7 +41,7 @@ A retro LCD-style screen showing today's date and day of the week, with quick st
 
 1. Touch and hold your watch face, then tap **Edit**.
 2. Swipe to **Complications** and tap a slot.
-3. Choose **M-D**, then pick a style: **Month first** or **Day first**.
+3. Choose **LCD Date**, then pick a style: **Month first** or **Day first**.
 
 ## Requirements
 
@@ -58,6 +58,8 @@ A retro LCD-style screen showing today's date and day of the week, with quick st
 
 ## Project structure
 
+The Xcode project and folders still use the app's original working name, **M-D** (Month-Day).
+
 ```
 M-D Watch App/          The watch app (retro LCD date screen)
   ContentView.swift
@@ -71,7 +73,7 @@ docs/                   Images for this README
 
 ## Privacy
 
-M-D has no accounts, ads, analytics or network code, and asks for no permissions. It only reads the watch's own date and time zone. For the App Store privacy label, this app is **Data Not Collected**.
+LCD Date has no accounts, ads, analytics or network code, and asks for no permissions. It only reads the watch's own date and time zone. For the App Store privacy label, this app is **Data Not Collected**.
 
 ## Author
 
@@ -79,4 +81,4 @@ Created by Senalbert Rodriguez.
 
 ## License
 
-M-D is free and open source under the [MIT License](LICENSE). You're welcome to use it, learn from it, change it and share it. Just keep the copyright notice.
+LCD Date is free and open source under the [MIT License](LICENSE). You're welcome to use it, learn from it, change it and share it. Just keep the copyright notice.

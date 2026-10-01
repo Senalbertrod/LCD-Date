@@ -341,7 +341,7 @@
 				DEVELOPMENT_TEAM = 8W85QPUG6S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "M-D";
+				INFOPLIST_KEY_CFBundleDisplayName = "LCD Date";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_WKWatchOnly = YES;
@@ -375,7 +375,7 @@
 				DEVELOPMENT_TEAM = 8W85QPUG6S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "M-D";
+				INFOPLIST_KEY_CFBundleDisplayName = "LCD Date";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_WKWatchOnly = YES;
@@ -410,7 +410,7 @@
 				DEVELOPMENT_TEAM = 8W85QPUG6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MDWidgets/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "M-D";
+				INFOPLIST_KEY_CFBundleDisplayName = "LCD Date";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -443,7 +443,7 @@
 				DEVELOPMENT_TEAM = 8W85QPUG6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MDWidgets/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "M-D";
+				INFOPLIST_KEY_CFBundleDisplayName = "LCD Date";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

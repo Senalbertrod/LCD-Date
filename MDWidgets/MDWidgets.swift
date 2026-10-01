@@ -2,7 +2,7 @@
 //  MDWidgets.swift
 //  MDWidgets
 //
-//  The M-D complications: today's month, day and year as numbers
+//  The LCD Date complications: today's month, day and year as numbers
 //  (month first or day first),
 //  in a retro digital-watch style.
 //
