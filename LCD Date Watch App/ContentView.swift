@@ -28,7 +28,7 @@ struct ContentView: View {
                     Text("ADD TO WATCH FACE")
                         .font(.system(size: 12, weight: .bold, design: .monospaced))
                         .foregroundStyle(lcdGreen)
-                    Text("1. Touch and hold your watch face.\n2. Tap Edit, then swipe to Complications.\n3. Tap a slot and choose LCD Date.\n4. Pick a style: month first like 10/01/2026, or day first like 01/10/2026, with slashes, dashes or dots.\n\nTip: tap the date above to switch the order here.")
+                    Text("1. Touch and hold your watch face.\n2. Tap Edit, then swipe to Complications.\n3. Tap a slot and choose LCD Date.\n4. Pick Month first (10/01/2026) or Day first (01/10/2026).\n5. Pick a style: slashes, dashes or dots, with the year or the day name.\n\nTip: tap the date above to switch the order here.")
                         .font(.system(size: 13))
                         .foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)

@@ -146,13 +146,30 @@ struct MDEntry: TimelineEntry {
     let style: DateStyle
 }
 
+/// One provider per complication. Apple Watch shows at most 15 ready-made
+/// choices per complication, so month-first and day-first each get their own
+/// complication with 12 choices.
 struct MDProvider: AppIntentTimelineProvider {
+    /// Which order this complication's list of choices offers.
+    let listOrder: DateOrderOption
+    /// The Day first complication always shows day first. The original complication
+    /// (Month first) respects whatever order was saved, so faces set up earlier keep working.
+    let forcesOrder: Bool
+
+    private func makeStyle(_ configuration: DateStyleIntent) -> DateStyle {
+        var s = DateStyle(configuration)
+        if forcesOrder { s.dayFirst = listOrder == .dayFirst }
+        return s
+    }
+
     func placeholder(in context: Context) -> MDEntry {
-        MDEntry(date: Date(), style: DateStyle())
+        var s = DateStyle()
+        s.dayFirst = listOrder == .dayFirst
+        return MDEntry(date: Date(), style: s)
     }
 
     func snapshot(for configuration: DateStyleIntent, in context: Context) async -> MDEntry {
-        MDEntry(date: Date(), style: DateStyle(configuration))
+        MDEntry(date: Date(), style: makeStyle(configuration))
     }
 
     /// An entry every 15 minutes for the next 24 hours, then a fresh timeline.
@@ -164,7 +181,7 @@ struct MDProvider: AppIntentTimelineProvider {
     /// *current* time zone, so the date always flips at your local midnight,
     /// wherever you are. 97 tiny entries a day is still very light on battery.
     func timeline(for configuration: DateStyleIntent, in context: Context) async -> Timeline<MDEntry> {
-        let style = DateStyle(configuration)
+        let style = makeStyle(configuration)
         let now = Date()
         var entries = [MDEntry(date: now, style: style)]
 
@@ -192,7 +209,7 @@ struct MDProvider: AppIntentTimelineProvider {
         // with zeros + year, with zeros + day name, no zeros + year, no zeros + day name.
         // The descriptions use Thursday, October 1, 2026 as the example.
         var list: [AppIntentRecommendation<DateStyleIntent>] = []
-        for order in [DateOrderOption.monthFirst, .dayFirst] {
+        for order in [listOrder] {
             let label = order == .monthFirst ? "Month first" : "Day first"
             for separator in [SeparatorOption.slash, .dash, .dot] {
                 let sep = separator.symbol
@@ -279,23 +296,43 @@ struct MDWidgetView: View {
 
 // MARK: - Widget
 
+/// "Month first": 10/01/2026. Keeps the original kind so faces set up earlier keep working.
 struct MDWidget: Widget {
     let kind = "MDDateWidget"
 
     var body: some WidgetConfiguration {
-        AppIntentConfiguration(kind: kind, intent: DateStyleIntent.self, provider: MDProvider()) { entry in
+        AppIntentConfiguration(kind: kind, intent: DateStyleIntent.self,
+                               provider: MDProvider(listOrder: .monthFirst, forcesOrder: false)) { entry in
             MDWidgetView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
-        .configurationDisplayName("Month · Day · Year")
-        .description("Today's date as numbers, retro style.")
+        .configurationDisplayName("Month first")
+        .description("Today's date as numbers, month first, retro style.")
         .supportedFamilies([.accessoryCircular, .accessoryRectangular, .accessoryCorner, .accessoryInline])
     }
 }
 
+/// "Day first": 01/10/2026.
+struct MDDayFirstWidget: Widget {
+    let kind = "MDDateDayFirstWidget"
+
+    var body: some WidgetConfiguration {
+        AppIntentConfiguration(kind: kind, intent: DateStyleIntent.self,
+                               provider: MDProvider(listOrder: .dayFirst, forcesOrder: true)) { entry in
+            MDWidgetView(entry: entry)
+                .containerBackground(.fill.tertiary, for: .widget)
+        }
+        .configurationDisplayName("Day first")
+        .description("Today's date as numbers, day first, retro style.")
+        .supportedFamilies([.accessoryCircular, .accessoryRectangular, .accessoryCorner, .accessoryInline])
+    }
+}
+
+/// Two complications, each with 12 ready-made styles (Apple Watch shows at most 15 per complication).
 @main
 struct MDWidgetBundle: WidgetBundle {
     var body: some Widget {
         MDWidget()
+        MDDayFirstWidget()
     }
 }
