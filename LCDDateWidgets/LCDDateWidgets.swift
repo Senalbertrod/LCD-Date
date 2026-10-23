@@ -50,7 +50,7 @@ enum ExtraOption: String, AppEnum {
 
     static var typeDisplayRepresentation: TypeDisplayRepresentation = "Show"
     static var caseDisplayRepresentations: [ExtraOption: DisplayRepresentation] = [
-        .year: "Day name + year  Thursday 10/01 26",
+        .year: "Day name + year  Thursday 10/01 2026",
         .weekday: "Day name  Thursday 10/01",
     ]
 }
@@ -112,12 +112,6 @@ struct DateStyle {
 
     /// Always the full four-digit year, like "2026".
     func year(_ date: Date) -> String { "\(parts(date).year)" }
-
-    /// The last two digits of the year, like "26", for the small complications.
-    func shortYear(_ date: Date) -> String {
-        let y = parts(date).year % 100
-        return y < 10 ? "0\(y)" : "\(y)"
-    }
 
     /// "10/01" month first, or "01/10" day first.
     func monthDay(_ date: Date) -> String {
@@ -228,7 +222,7 @@ struct MDProvider: AppIntentTimelineProvider {
                     let md = order == .monthFirst ? month + sep + day : day + sep + month
                     list.append(AppIntentRecommendation(
                         intent: make(separator, zeros: zeros, weekday: false, order: order),
-                        description: Text(verbatim: "\(label) Thursday \(md) 26")))
+                        description: Text(verbatim: "\(label) Thursday \(md) 2026")))
                     list.append(AppIntentRecommendation(
                         intent: make(separator, zeros: zeros, weekday: true, order: order),
                         description: Text(verbatim: "\(label) Thursday \(md)")))
@@ -266,7 +260,7 @@ struct MDWidgetView: View {
                 }
                 .padding(.horizontal, 3)
             } else {
-                // All three: THU, then 10/01, then 26 (a little smaller to fit)
+                // All three: THU, then 10/01, then 2026 (a little smaller to fit)
                 VStack(spacing: -1) {
                     Text(style.shortWeekday(entry.date))
                         .font(.system(size: 10.5, weight: .semibold, design: .monospaced))
@@ -277,8 +271,8 @@ struct MDWidgetView: View {
                         .minimumScaleFactor(0.5)
                         .lineLimit(1)
                         .widgetAccentable()
-                    Text(style.shortYear(entry.date))
-                        .font(.system(size: 11.5, weight: .semibold, design: .monospaced))
+                    Text(style.year(entry.date))
+                        .font(.system(size: 11, weight: .semibold, design: .monospaced))
                         .minimumScaleFactor(0.6)
                         .lineLimit(1)
                 }
@@ -306,9 +300,9 @@ struct MDWidgetView: View {
                 .minimumScaleFactor(0.5)
                 .widgetAccentable()
                 .widgetLabel {
-                    // THURSDAY, or THU 26 with the year
+                    // THURSDAY, or THU 2026 with the year
                     Text(style.showWeekday ? style.weekday(entry.date)
-                         : style.shortWeekday(entry.date) + " " + style.shortYear(entry.date))
+                         : style.shortWeekday(entry.date) + " " + style.year(entry.date))
                 }
 
         default: // .accessoryInline

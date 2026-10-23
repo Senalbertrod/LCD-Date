@@ -14,9 +14,9 @@
 
 | Slot | With the day name and year | With the day name |
 |---|---|---|
-| **Circular** | All three: `THU` on top, `10/01` in the middle, `26` at the bottom | `THU` on top, then `10/01` |
+| **Circular** | All three: `THU` on top, `10/01` in the middle, `2026` at the bottom | `THU` on top, then `10/01` |
 | **Rectangular** | `THURSDAY`, then `10/01/2026` in big digits | Same (always shows both) |
-| **Corner** | `10/01`, with `THU 26` on the curved label | `10/01`, with `THURSDAY` on the curved label |
+| **Corner** | `10/01`, with `THU 2026` on the curved label | `10/01`, with `THURSDAY` on the curved label |
 | **Inline** | `THURSDAY 10/01/2026` | `THURSDAY 10/01` |
 
 Day names follow your watch's language.
@@ -25,17 +25,17 @@ LCD Date has **two complications**, **Month first** and **Day first**, each with
 
 | Style | Month first | Day first |
 |---|---|---|
-| Slash, day name and year | `Thursday 10/01 26` | `Thursday 01/10 26` |
+| Slash, day name and year | `Thursday 10/01 2026` | `Thursday 01/10 2026` |
 | Slash, day name | `Thursday 10/01` | `Thursday 01/10` |
-| Slash, no zeros, day name and year | `Thursday 10/1 26` | `Thursday 1/10 26` |
+| Slash, no zeros, day name and year | `Thursday 10/1 2026` | `Thursday 1/10 2026` |
 | Slash, no zeros, day name | `Thursday 10/1` | `Thursday 1/10` |
-| Dash, day name and year | `Thursday 10-01 26` | `Thursday 01-10 26` |
+| Dash, day name and year | `Thursday 10-01 2026` | `Thursday 01-10 2026` |
 | Dash, day name | `Thursday 10-01` | `Thursday 01-10` |
-| Dash, no zeros, day name and year | `Thursday 10-1 26` | `Thursday 1-10 26` |
+| Dash, no zeros, day name and year | `Thursday 10-1 2026` | `Thursday 1-10 2026` |
 | Dash, no zeros, day name | `Thursday 10-1` | `Thursday 1-10` |
-| Dot, day name and year | `Thursday 10.01 26` | `Thursday 01.10 26` |
+| Dot, day name and year | `Thursday 10.01 2026` | `Thursday 01.10 2026` |
 | Dot, day name | `Thursday 10.01` | `Thursday 01.10` |
-| Dot, no zeros, day name and year | `Thursday 10.1 26` | `Thursday 1.10 26` |
+| Dot, no zeros, day name and year | `Thursday 10.1 2026` | `Thursday 1.10 2026` |
 | Dot, no zeros, day name | `Thursday 10.1` | `Thursday 1.10` |
 
 - **Flips at your local midnight, anywhere.** The complication checks in every 15 minutes and always uses the watch's *current* time zone. Every time zone on Earth is a multiple of 15 minutes from UTC, so the date changes at exactly 12:00 AM local time, even right after you fly to another country, including half-hour zones like India and Nepal's +5:45.
