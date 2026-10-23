@@ -3,7 +3,7 @@
 //  LCDDateWidgets
 //
 //  The LCD Date complications: today's month, day and year as numbers
-//  (month first or day first, with the year or the day name),
+//  (month first or day first, with the day name, or the day name and the year),
 //  in a retro digital-watch style.
 //
 
@@ -44,11 +44,13 @@ enum DateOrderOption: String, AppEnum {
 }
 
 enum ExtraOption: String, AppEnum {
+    // ("year" keeps its saved name so watch faces set up earlier keep working;
+    // it now shows all three: the day name, the date and the year.)
     case year, weekday
 
     static var typeDisplayRepresentation: TypeDisplayRepresentation = "Show"
     static var caseDisplayRepresentations: [ExtraOption: DisplayRepresentation] = [
-        .year: "Year  10/01/2026",
+        .year: "Day name + year  Thursday 10/01 26",
         .weekday: "Day name  Thursday 10/01",
     ]
 }
@@ -75,7 +77,8 @@ struct DateStyle {
     var dayFirst = false
     var separator = "/"
     var leadingZeros = true
-    /// Show the day name (on top) instead of the year (underneath).
+    /// Show only the day name (on top). Otherwise the small complications show
+    /// all three: the day name, the date and the year.
     var showWeekday = false
 
     init() {}
@@ -110,6 +113,12 @@ struct DateStyle {
     /// Always the full four-digit year, like "2026".
     func year(_ date: Date) -> String { "\(parts(date).year)" }
 
+    /// The last two digits of the year, like "26", for the small complications.
+    func shortYear(_ date: Date) -> String {
+        let y = parts(date).year % 100
+        return y < 10 ? "0\(y)" : "\(y)"
+    }
+
     /// "10/01" month first, or "01/10" day first.
     func monthDay(_ date: Date) -> String {
         dayFirst ? day(date) + separator + month(date) : month(date) + separator + day(date)
@@ -133,9 +142,9 @@ struct DateStyle {
         return f.string(from: date).uppercased()
     }
 
-    /// One line: "10/01/2026", or "THURSDAY 10/01" when showing the day name.
+    /// One line: "THURSDAY 10/01", or "THURSDAY 10/01/2026" with the year too.
     func line(_ date: Date) -> String {
-        showWeekday ? weekday(date) + " " + monthDay(date) : full(date)
+        weekday(date) + " " + (showWeekday ? monthDay(date) : full(date))
     }
 }
 
@@ -206,7 +215,8 @@ struct MDProvider: AppIntentTimelineProvider {
             return intent
         }
         // For each order and separator, four choices side by side:
-        // with zeros + year, with zeros + day name, no zeros + year, no zeros + day name.
+        // with zeros + day name and year, with zeros + day name,
+        // no zeros + day name and year, no zeros + day name.
         // The descriptions use Thursday, October 1, 2026 as the example.
         var list: [AppIntentRecommendation<DateStyleIntent>] = []
         for order in [listOrder] {
@@ -218,7 +228,7 @@ struct MDProvider: AppIntentTimelineProvider {
                     let md = order == .monthFirst ? month + sep + day : day + sep + month
                     list.append(AppIntentRecommendation(
                         intent: make(separator, zeros: zeros, weekday: false, order: order),
-                        description: Text(verbatim: "\(label) \(md)\(sep)2026")))
+                        description: Text(verbatim: "\(label) Thursday \(md) 26")))
                     list.append(AppIntentRecommendation(
                         intent: make(separator, zeros: zeros, weekday: true, order: order),
                         description: Text(verbatim: "\(label) Thursday \(md)")))
@@ -241,28 +251,39 @@ struct MDWidgetView: View {
         switch family {
         case .accessoryCircular:
             // No circle behind it, like PM & DST: just the text on the watch face.
-            VStack(spacing: 0) {
-                if style.showWeekday {
-                    // Day name on top: THU over 10/01
+            if style.showWeekday {
+                // Day name on top: THU over 10/01
+                VStack(spacing: 0) {
                     Text(style.shortWeekday(entry.date))
                         .font(.system(size: 12, weight: .semibold, design: .monospaced))
                         .minimumScaleFactor(0.6)
                         .lineLimit(1)
+                    Text(style.monthDay(entry.date))
+                        .font(.system(size: 18, weight: .bold, design: .monospaced))
+                        .minimumScaleFactor(0.5)
+                        .lineLimit(1)
+                        .widgetAccentable()
                 }
-                Text(style.monthDay(entry.date))
-                    .font(.system(size: 18, weight: .bold, design: .monospaced))
-                    .minimumScaleFactor(0.5)
-                    .lineLimit(1)
-                    .widgetAccentable()
-                if !style.showWeekday {
-                    // Year underneath: 10/01 over 2026
-                    Text(style.year(entry.date))
-                        .font(.system(size: 12, weight: .semibold, design: .monospaced))
+                .padding(.horizontal, 3)
+            } else {
+                // All three: THU, then 10/01, then 26 (a little smaller to fit)
+                VStack(spacing: -1) {
+                    Text(style.shortWeekday(entry.date))
+                        .font(.system(size: 10.5, weight: .semibold, design: .monospaced))
+                        .minimumScaleFactor(0.6)
+                        .lineLimit(1)
+                    Text(style.monthDay(entry.date))
+                        .font(.system(size: 15, weight: .bold, design: .monospaced))
+                        .minimumScaleFactor(0.5)
+                        .lineLimit(1)
+                        .widgetAccentable()
+                    Text(style.shortYear(entry.date))
+                        .font(.system(size: 11.5, weight: .semibold, design: .monospaced))
                         .minimumScaleFactor(0.6)
                         .lineLimit(1)
                 }
+                .padding(.horizontal, 3)
             }
-            .padding(.horizontal, 3)
 
         case .accessoryRectangular:
             // Always the day name and the full date with the year.
@@ -285,7 +306,9 @@ struct MDWidgetView: View {
                 .minimumScaleFactor(0.5)
                 .widgetAccentable()
                 .widgetLabel {
-                    Text(style.showWeekday ? style.weekday(entry.date) : style.year(entry.date))
+                    // THURSDAY, or THU 26 with the year
+                    Text(style.showWeekday ? style.weekday(entry.date)
+                         : style.shortWeekday(entry.date) + " " + style.shortYear(entry.date))
                 }
 
         default: // .accessoryInline
