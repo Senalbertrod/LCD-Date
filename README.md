@@ -88,6 +88,18 @@ The bundle identifiers (`com.senalbert.M-D.watchkitapp`) keep the app's original
 
 LCD Date has no accounts, ads, analytics or network code, and asks for no permissions. It only reads the watch's own date and time zone. For the App Store privacy label, this app is **Data Not Collected**.
 
+## Versions
+
+**Rules for every App Store upload:**
+
+- 1.0 is the first App Store release. After that, go up one step at a time: 1.1, 1.2, 1.3…
+- Every update gets a short, plain-English "What's New in This Version" list in App Store Connect, and the same list is added below.
+- The build number goes up by 1 on every upload, even when the version stays the same (for example, after a rejection).
+
+| Version | What's new |
+| --- | --- |
+| 1.0 | First App Store release. |
+
 ## Author
 
 Created by Senalbert Rodriguez.
