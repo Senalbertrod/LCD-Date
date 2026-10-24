@@ -21,7 +21,9 @@
 
 Day names follow your watch's language.
 
-LCD Date has **two complications**, **Month first** and **Day first**, each with its own list of 12 styles (Apple Watch shows at most 15 choices per complication, so splitting them lets all 24 appear). Every style comes four ways, side by side: with or without leading zeros (for March 5: `03/05` or `3/5`), and with the day name and year, or the day name only. Examples are for Thursday, October 1, 2026:
+There's also a **Day name** complication that shows only the day of the week, with two choices: the full name (`SATURDAY`) or the short one (`SAT`). In the big (rectangular) slot it always shows the full name; in the corner and one-line slots it shows the one you picked.
+
+LCD Date has **two date complications**, **Month first** and **Day first**, each with its own list of 12 styles (Apple Watch shows at most 15 choices per complication, so splitting them lets all 24 appear). Every style comes four ways, side by side: with or without leading zeros (for March 5: `03/05` or `3/5`), and with the day name and year, or the day name only. Examples are for Thursday, October 1, 2026:
 
 | Style | Month first | Day first |
 |---|---|---|
@@ -50,8 +52,8 @@ A retro LCD-style screen showing today's date and day of the week, with quick st
 
 1. Touch and hold your watch face, then tap **Edit**.
 2. Swipe to **Complications** and tap a slot.
-3. Choose **LCD Date**, then the **Month first** or **Day first** complication.
-4. Pick a style from its list of 12, with the day name and year, or the day name only.
+3. Choose **LCD Date**, then the **Month first**, **Day first** or **Day name** complication.
+4. Pick a style: Month first and Day first have 12 each (with the day name and year, or the day name only); Day name has the full name or the short one.
 
 ## Requirements
 

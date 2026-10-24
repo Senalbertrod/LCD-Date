@@ -4,7 +4,7 @@
 //
 //  The LCD Date complications: today's month, day and year as numbers
 //  (month first or day first, with the day name, or the day name and the year),
-//  in a retro digital-watch style.
+//  and the day name on its own (SATURDAY or SAT), in a retro digital-watch style.
 //
 
 import AppIntents
@@ -311,6 +311,129 @@ struct MDWidgetView: View {
     }
 }
 
+// MARK: - Day name (just the day of the week)
+
+enum DayNameLength: String, AppEnum {
+    case full, short
+
+    static var typeDisplayRepresentation: TypeDisplayRepresentation = "Day name"
+    static var caseDisplayRepresentations: [DayNameLength: DisplayRepresentation] = [
+        .full: "Full name  SATURDAY",
+        .short: "Short  SAT",
+    ]
+}
+
+struct DayNameIntent: WidgetConfigurationIntent {
+    static var title: LocalizedStringResource = "Day Name"
+    static var description = IntentDescription("Choose the full day name or the short one.")
+
+    @Parameter(title: "Day name", default: .full)
+    var length: DayNameLength
+}
+
+struct DayNameEntry: TimelineEntry {
+    let date: Date
+    let short: Bool
+}
+
+struct DayNameProvider: AppIntentTimelineProvider {
+    func placeholder(in context: Context) -> DayNameEntry {
+        DayNameEntry(date: Date(), short: false)
+    }
+
+    func snapshot(for configuration: DayNameIntent, in context: Context) async -> DayNameEntry {
+        DayNameEntry(date: Date(), short: configuration.length == .short)
+    }
+
+    /// Same as the date complications: an entry every 15 minutes, so the day
+    /// changes at your local midnight wherever you are.
+    func timeline(for configuration: DayNameIntent, in context: Context) async -> Timeline<DayNameEntry> {
+        let short = configuration.length == .short
+        let now = Date()
+        var entries = [DayNameEntry(date: now, short: short)]
+        let quarter: TimeInterval = 15 * 60
+        let nextQuarter = Date(timeIntervalSince1970: (now.timeIntervalSince1970 / quarter).rounded(.down) * quarter + quarter)
+        for step in 0..<96 {
+            entries.append(DayNameEntry(date: nextQuarter.addingTimeInterval(Double(step) * quarter), short: short))
+        }
+        return Timeline(entries: entries, policy: .atEnd)
+    }
+
+    func recommendations() -> [AppIntentRecommendation<DayNameIntent>] {
+        [DayNameLength.full, .short].map { length in
+            let intent = DayNameIntent()
+            intent.length = length
+            return AppIntentRecommendation(intent: intent,
+                                           description: Text(verbatim: length == .full ? "Day name SATURDAY" : "Day name SAT"))
+        }
+    }
+}
+
+struct DayNameView: View {
+    @Environment(\.widgetFamily) private var family
+    let entry: DayNameEntry
+
+    private var fullName: String { DateStyle().weekday(entry.date) }
+    private var shortName: String { DateStyle().shortWeekday(entry.date) }
+    private var name: String { entry.short ? shortName : fullName }
+
+    var body: some View {
+        switch family {
+        case .accessoryCircular:
+            // SAT big, or SATURDAY shrunk to fit the circle.
+            Text(name)
+                .font(.system(size: entry.short ? 22 : 15, weight: .bold, design: .monospaced))
+                .minimumScaleFactor(0.4)
+                .lineLimit(1)
+                .padding(.horizontal, 2)
+                .widgetAccentable()
+
+        case .accessoryRectangular:
+            // Always the full name, big.
+            Text(fullName)
+                .font(.system(size: 30, weight: .bold, design: .monospaced))
+                .minimumScaleFactor(0.4)
+                .lineLimit(1)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .widgetAccentable()
+
+        case .accessoryCorner:
+            // SAT in the corner; with the full name, SATURDAY also curves along the edge.
+            if entry.short {
+                Text(shortName)
+                    .font(.system(size: 18, weight: .bold, design: .monospaced))
+                    .minimumScaleFactor(0.5)
+                    .widgetAccentable()
+                    .widgetCurvesContent()
+            } else {
+                Text(shortName)
+                    .font(.system(size: 16, weight: .bold, design: .monospaced))
+                    .minimumScaleFactor(0.5)
+                    .widgetAccentable()
+                    .widgetLabel { Text(fullName) }
+            }
+
+        default: // .accessoryInline
+            Text(name)
+        }
+    }
+}
+
+/// "Day name": SATURDAY or SAT.
+struct DayNameWidget: Widget {
+    let kind = "LCDDayNameWidget"
+
+    var body: some WidgetConfiguration {
+        AppIntentConfiguration(kind: kind, intent: DayNameIntent.self, provider: DayNameProvider()) { entry in
+            DayNameView(entry: entry)
+                .containerBackground(.fill.tertiary, for: .widget)
+        }
+        .configurationDisplayName("Day name")
+        .description("Today's day of the week, retro style.")
+        .supportedFamilies([.accessoryCircular, .accessoryRectangular, .accessoryCorner, .accessoryInline])
+    }
+}
+
 // MARK: - Widget
 
 /// "Month first": 10/01/2026. Keeps the original kind so faces set up earlier keep working.
@@ -345,11 +468,13 @@ struct MDDayFirstWidget: Widget {
     }
 }
 
-/// Two complications, each with 12 ready-made styles (Apple Watch shows at most 15 per complication).
+/// Three complications: Month first and Day first (12 ready-made styles each;
+/// Apple Watch shows at most 15 per complication), and Day name (2 styles).
 @main
 struct MDWidgetBundle: WidgetBundle {
     var body: some Widget {
         MDWidget()
         MDDayFirstWidget()
+        DayNameWidget()
     }
 }
