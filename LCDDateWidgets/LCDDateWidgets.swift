@@ -209,8 +209,8 @@ struct MDProvider: AppIntentTimelineProvider {
             return intent
         }
         // For each order and separator, four choices side by side:
-        // with zeros + day name and year, with zeros + day name,
-        // no zeros + day name and year, no zeros + day name.
+        // with zeros + day name, with zeros + day name and year,
+        // no zeros + day name, no zeros + day name and year.
         // The descriptions use Thursday, October 1, 2026 as the example.
         var list: [AppIntentRecommendation<DateStyleIntent>] = []
         for order in [listOrder] {
@@ -221,11 +221,11 @@ struct MDProvider: AppIntentTimelineProvider {
                     let month = "10", day = zeros ? "01" : "1"
                     let md = order == .monthFirst ? month + sep + day : day + sep + month
                     list.append(AppIntentRecommendation(
-                        intent: make(separator, zeros: zeros, weekday: false, order: order),
-                        description: Text(verbatim: "\(label) Thursday \(md) 2026")))
-                    list.append(AppIntentRecommendation(
                         intent: make(separator, zeros: zeros, weekday: true, order: order),
                         description: Text(verbatim: "\(label) Thursday \(md)")))
+                    list.append(AppIntentRecommendation(
+                        intent: make(separator, zeros: zeros, weekday: false, order: order),
+                        description: Text(verbatim: "\(label) Thursday \(md) 2026")))
                 }
             }
         }
@@ -380,9 +380,9 @@ struct DayNameView: View {
     var body: some View {
         switch family {
         case .accessoryCircular:
-            // SAT big, or SATURDAY shrunk to fit the circle.
+            // Same lettering as DST in PM & DST. SATURDAY shrinks to fit the circle.
             Text(name)
-                .font(.system(size: entry.short ? 22 : 15, weight: .bold, design: .monospaced))
+                .font(.system(.title2, design: .monospaced).weight(.medium))
                 .minimumScaleFactor(0.4)
                 .lineLimit(1)
                 .padding(.horizontal, 2)
@@ -391,7 +391,7 @@ struct DayNameView: View {
         case .accessoryRectangular:
             // Always the full name, big.
             Text(fullName)
-                .font(.system(size: 30, weight: .bold, design: .monospaced))
+                .font(.system(size: 30, design: .monospaced).weight(.medium))
                 .minimumScaleFactor(0.4)
                 .lineLimit(1)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -401,13 +401,13 @@ struct DayNameView: View {
             // SAT in the corner; with the full name, SATURDAY also curves along the edge.
             if entry.short {
                 Text(shortName)
-                    .font(.system(size: 18, weight: .bold, design: .monospaced))
+                    .font(.system(.title2, design: .monospaced).weight(.medium))
                     .minimumScaleFactor(0.5)
                     .widgetAccentable()
                     .widgetCurvesContent()
             } else {
                 Text(shortName)
-                    .font(.system(size: 16, weight: .bold, design: .monospaced))
+                    .font(.system(.title3, design: .monospaced).weight(.medium))
                     .minimumScaleFactor(0.5)
                     .widgetAccentable()
                     .widgetLabel { Text(fullName) }
@@ -468,13 +468,14 @@ struct MDDayFirstWidget: Widget {
     }
 }
 
-/// Three complications: Month first and Day first (12 ready-made styles each;
-/// Apple Watch shows at most 15 per complication), and Day name (2 styles).
+/// Three complications, in the order they're listed: Day name (2 styles), then
+/// Month first and Day first (12 ready-made styles each; Apple Watch shows at
+/// most 15 per complication).
 @main
 struct MDWidgetBundle: WidgetBundle {
     var body: some Widget {
+        DayNameWidget()
         MDWidget()
         MDDayFirstWidget()
-        DayNameWidget()
     }
 }

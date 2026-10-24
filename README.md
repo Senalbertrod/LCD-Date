@@ -21,24 +21,24 @@
 
 Day names follow your watch's language.
 
-There's also a **Day name** complication that shows only the day of the week, with two choices: the full name (`SATURDAY`) or the short one (`SAT`). In the big (rectangular) slot it always shows the full name; in the corner and one-line slots it shows the one you picked.
+First in the list is the **Day name** complication. It shows only the day of the week, with two choices: the full name (`SATURDAY`) or the short one (`SAT`). In the big (rectangular) slot it always shows the full name; in the corner and one-line slots it shows the one you picked.
 
-LCD Date has **two date complications**, **Month first** and **Day first**, each with its own list of 12 styles (Apple Watch shows at most 15 choices per complication, so splitting them lets all 24 appear). Every style comes four ways, side by side: with or without leading zeros (for March 5: `03/05` or `3/5`), and with the day name and year, or the day name only. Examples are for Thursday, October 1, 2026:
+LCD Date has **two date complications**, **Month first** and **Day first**, each with its own list of 12 styles (Apple Watch shows at most 15 choices per complication, so splitting them lets all 24 appear). Every style comes four ways, side by side: with or without leading zeros (for March 5: `03/05` or `3/5`), and with the day name only, or the day name and year. Examples are for Thursday, October 1, 2026:
 
 | Style | Month first | Day first |
 |---|---|---|
-| Slash, day name and year | `Thursday 10/01 2026` | `Thursday 01/10 2026` |
 | Slash, day name | `Thursday 10/01` | `Thursday 01/10` |
-| Slash, no zeros, day name and year | `Thursday 10/1 2026` | `Thursday 1/10 2026` |
+| Slash, day name and year | `Thursday 10/01 2026` | `Thursday 01/10 2026` |
 | Slash, no zeros, day name | `Thursday 10/1` | `Thursday 1/10` |
-| Dash, day name and year | `Thursday 10-01 2026` | `Thursday 01-10 2026` |
+| Slash, no zeros, day name and year | `Thursday 10/1 2026` | `Thursday 1/10 2026` |
 | Dash, day name | `Thursday 10-01` | `Thursday 01-10` |
-| Dash, no zeros, day name and year | `Thursday 10-1 2026` | `Thursday 1-10 2026` |
+| Dash, day name and year | `Thursday 10-01 2026` | `Thursday 01-10 2026` |
 | Dash, no zeros, day name | `Thursday 10-1` | `Thursday 1-10` |
-| Dot, day name and year | `Thursday 10.01 2026` | `Thursday 01.10 2026` |
+| Dash, no zeros, day name and year | `Thursday 10-1 2026` | `Thursday 1-10 2026` |
 | Dot, day name | `Thursday 10.01` | `Thursday 01.10` |
-| Dot, no zeros, day name and year | `Thursday 10.1 2026` | `Thursday 1.10 2026` |
+| Dot, day name and year | `Thursday 10.01 2026` | `Thursday 01.10 2026` |
 | Dot, no zeros, day name | `Thursday 10.1` | `Thursday 1.10` |
+| Dot, no zeros, day name and year | `Thursday 10.1 2026` | `Thursday 1.10 2026` |
 
 - **Flips at your local midnight, anywhere.** The complication checks in every 15 minutes and always uses the watch's *current* time zone. Every time zone on Earth is a multiple of 15 minutes from UTC, so the date changes at exactly 12:00 AM local time, even right after you fly to another country, including half-hour zones like India and Nepal's +5:45.
 - **Always month/day/year.** It uses the regular (Gregorian) calendar even if your watch is set to a different calendar system, so the numbers are never confusing.
@@ -53,7 +53,7 @@ A retro LCD-style screen showing today's date and day of the week, with quick st
 1. Touch and hold your watch face, then tap **Edit**.
 2. Swipe to **Complications** and tap a slot.
 3. Choose **LCD Date**, then the **Month first**, **Day first** or **Day name** complication.
-4. Pick a style: Month first and Day first have 12 each (with the day name and year, or the day name only); Day name has the full name or the short one.
+4. Pick a style: Day name has the full name or the short one; Month first and Day first have 12 each (with the day name only, or the day name and year).
 
 ## Requirements
 
