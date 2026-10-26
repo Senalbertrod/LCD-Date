@@ -426,6 +426,7 @@ struct DayNameWidget: Widget {
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: DayNameIntent.self, provider: DayNameProvider()) { entry in
             DayNameView(entry: entry)
+                .unredacted()   // a date isn't private: show it even before the first unlock after a restart
                 .containerBackground(.fill.tertiary, for: .widget)
         }
         .configurationDisplayName("Day name")
@@ -444,6 +445,7 @@ struct MDWidget: Widget {
         AppIntentConfiguration(kind: kind, intent: DateStyleIntent.self,
                                provider: MDProvider(listOrder: .monthFirst, forcesOrder: false)) { entry in
             MDWidgetView(entry: entry)
+                .unredacted()   // a date isn't private: show it even before the first unlock after a restart
                 .containerBackground(.fill.tertiary, for: .widget)
         }
         .configurationDisplayName("Month first")
@@ -460,6 +462,7 @@ struct MDDayFirstWidget: Widget {
         AppIntentConfiguration(kind: kind, intent: DateStyleIntent.self,
                                provider: MDProvider(listOrder: .dayFirst, forcesOrder: true)) { entry in
             MDWidgetView(entry: entry)
+                .unredacted()   // a date isn't private: show it even before the first unlock after a restart
                 .containerBackground(.fill.tertiary, for: .widget)
         }
         .configurationDisplayName("Day first")
