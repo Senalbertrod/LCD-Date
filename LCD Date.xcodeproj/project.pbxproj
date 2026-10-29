@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		15C37602306DED0600F34D59 /* LCDDateWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 15C37601306DED0600F34D59 /* LCDDateWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		130AFC28C172197A16490334 /* LCD Date Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 15C375C5306DED0600F34D59 /* LCD Date Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -18,18 +19,34 @@
 			remoteGlobalIDString = 15C3760A306DED0600F34D59;
 			remoteInfo = LCDDateWidgetsExtension;
 		};
+		6CA9736C1923DC164387F7CB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15C375B9306DED0600F34D59 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15C375C4306DED0600F34D59;
+			remoteInfo = "LCD Date Watch App";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		15C37604306DED0600F34D59 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 13;
+			dstSubfolder = PlugIns;
 			files = (
 				15C37602306DED0600F34D59 /* LCDDateWidgetsExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
+		};
+		D851DD32788741F1F0FC0A4A /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				130AFC28C172197A16490334 /* LCD Date Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -37,6 +54,7 @@
 /* Begin PBXFileReference section */
 		15C375C5306DED0600F34D59 /* LCD Date Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LCD Date Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15C37601306DED0600F34D59 /* LCDDateWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LCDDateWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		75B34F68CDF4008AC01ECB28 /* LCD Date.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LCD Date.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -91,6 +109,7 @@
 		15C375C0306DED0600F34D59 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				75B34F68CDF4008AC01ECB28 /* LCD Date.app */,
 				15C375C5306DED0600F34D59 /* LCD Date Watch App.app */,
 				15C37601306DED0600F34D59 /* LCDDateWidgetsExtension.appex */,
 			);
@@ -132,8 +151,6 @@
 			);
 			buildRules = (
 			);
-			dependencies = (
-			);
 			fileSystemSynchronizedGroups = (
 				15C37606306DED0600F34D59 /* LCDDateWidgets */,
 			);
@@ -141,6 +158,25 @@
 			productName = LCDDateWidgetsExtension;
 			productReference = 15C37601306DED0600F34D59 /* LCDDateWidgetsExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
+		};
+		68FAD13CDA0FEF2327954F9E /* LCD Date */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 257A1AD4EB936534F5BBE5E0 /* Build configuration list for PBXNativeTarget "LCD Date" */;
+			buildPhases = (
+				D36655D60EF0628365A6C7C3 /* Resources */,
+				D851DD32788741F1F0FC0A4A /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				865819498A8B334D187CFA02 /* PBXTargetDependency */,
+			);
+			name = "LCD Date";
+			packageProductDependencies = (
+			);
+			productName = "LCD Date";
+			productReference = 75B34F68CDF4008AC01ECB28 /* LCD Date.app */;
+			productType = "com.apple.product-type.application.watchapp2-container";
 		};
 /* End PBXNativeTarget section */
 
@@ -152,6 +188,9 @@
 				LastSwiftUpdateCheck = 2700;
 				LastUpgradeCheck = 2700;
 				TargetAttributes = {
+					68FAD13CDA0FEF2327954F9E = {
+						CreatedOnToolsVersion = 27.0;
+					};
 					15C375C4306DED0600F34D59 = {
 						CreatedOnToolsVersion = 27.0;
 					};
@@ -174,6 +213,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				68FAD13CDA0FEF2327954F9E /* LCD Date */,
 				15C375C4306DED0600F34D59 /* LCD Date Watch App */,
 				15C3760A306DED0600F34D59 /* LCDDateWidgetsExtension */,
 			);
@@ -190,6 +230,13 @@
 			isa = PBXResourcesBuildPhase;
 			files = (
 			);
+		};
+		D36655D60EF0628365A6C7C3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
@@ -211,6 +258,11 @@
 			isa = PBXTargetDependency;
 			target = 15C3760A306DED0600F34D59 /* LCDDateWidgetsExtension */;
 			targetProxy = 15C37603306DED0600F34D59 /* PBXContainerItemProxy */;
+		};
+		865819498A8B334D187CFA02 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 15C375C4306DED0600F34D59 /* LCD Date Watch App */;
+			targetProxy = 6CA9736C1923DC164387F7CB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -342,15 +394,15 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "LCD Date";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.senalbert.M-D.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.senalbert.LCD-Date.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -376,15 +428,15 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "LCD Date";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.senalbert.M-D.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.senalbert.LCD-Date.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -419,7 +471,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.senalbert.M-D.watchkitapp.widgets";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.senalbert.LCD-Date.watchkitapp.widgets";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -452,7 +504,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.senalbert.M-D.watchkitapp.widgets";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.senalbert.LCD-Date.watchkitapp.widgets";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -464,6 +516,45 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Release;
+		};
+		405EC047A435C12FDB8754E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8W85QPUG6S;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "LCD Date";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.senalbert.LCD-Date";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4CD3D8B6937327C4EFF981DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8W85QPUG6S;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "LCD Date";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.senalbert.LCD-Date";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -492,6 +583,15 @@
 				15C3760C306DED0600F34D59 /* Debug configuration for PBXNativeTarget "LCDDateWidgetsExtension" */,
 				15C3760D306DED0600F34D59 /* Release configuration for PBXNativeTarget "LCDDateWidgetsExtension" */,
 			);
+			defaultConfigurationName = Release;
+		};
+		257A1AD4EB936534F5BBE5E0 /* Build configuration list for PBXNativeTarget "LCD Date" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				405EC047A435C12FDB8754E1 /* Debug */,
+				4CD3D8B6937327C4EFF981DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
