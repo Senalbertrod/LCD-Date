@@ -15,7 +15,8 @@ Apple Watch app with retro LCD-style date complications (Month first, Day first,
 - 1.0 is the first release, then 1.1, 1.2, and so on.
 - Every update gets a "What's New" list (the README's Versions section).
 - The build number goes up by 1 on every upload.
-- Every update: change the version and build number on both the iPhone wrapper target "LCD Date" and the "LCD Date Watch App" target, so they match. Archive with the "LCD Date" scheme.
+- Every update: change the version and build number on both the iPhone wrapper target "LCD Date" and the "LCD Date Watch App" target, so they match. Archive with the "LCD Date" scheme. The complications target (LCDDateWidgetsExtension) needs the same build number too, or Apple rejects the upload.
+- Every December: make a new version with the icon's year changed to the new year, submit it early in December, and schedule it to release on January 1.
 
 ## Senalbert's projects
 
