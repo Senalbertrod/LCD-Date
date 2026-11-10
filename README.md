@@ -71,6 +71,8 @@ A retro LCD-style screen showing today's date and day of the week, with quick st
 ## Project structure
 
 ```
+LCD Date/                 iPhone wrapper for the App Store (only its app icon)
+  Assets.xcassets/
 LCD Date Watch App/       The watch app (retro LCD date screen)
   ContentView.swift
   LCDDateApp.swift
@@ -97,6 +99,7 @@ LCD Date has no accounts, ads, analytics or network code, and asks for no permis
 - The build number goes up by 1 on every upload, even when the version stays the same (for example, after a rejection).
 - **Update the wrapper too.** The app has two parts in Xcode: the iPhone wrapper ("LCD Date") and the Apple Watch app ("LCD Date Watch App"). Every update, change the version and build number on **both**, so they match. Then archive with the "LCD Date" scheme (Product → Archive) and upload. The complications (LCDDateWidgetsExtension) get the same build number as well, because Apple requires it to match the app it's inside.
 - **New icon every year.** The app icon shows the year (`2026`). Every December, make a new version with the icon's year changed to the new year, submit it early in December, and in App Store Connect schedule it to release on **January 1**.
+- **iPhone and Apple Watch icons must match** (App Store Guideline 2.3.8). The icon lives in two places: `LCD Date/Assets.xcassets` (iPhone wrapper) and `LCD Date Watch App/Assets.xcassets` (Apple Watch app). Whenever the icon changes, put the same 1024×1024 picture, with no transparency, in both.
 
 | Version | What's new |
 | --- | --- |

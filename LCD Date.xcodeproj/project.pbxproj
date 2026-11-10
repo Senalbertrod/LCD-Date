@@ -68,6 +68,11 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		A1C0DA7E5EB0A11C0A55E701 /* LCD Date */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "LCD Date";
+			sourceTree = "<group>";
+		};
 		15C375C9306DED0600F34D59 /* LCD Date Watch App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "LCD Date Watch App";
@@ -100,6 +105,7 @@
 		15C375B8306DED0600F34D59 = {
 			isa = PBXGroup;
 			children = (
+				A1C0DA7E5EB0A11C0A55E701 /* LCD Date */,
 				15C375C9306DED0600F34D59 /* LCD Date Watch App */,
 				15C37606306DED0600F34D59 /* LCDDateWidgets */,
 				15C375C0306DED0600F34D59 /* Products */,
@@ -170,6 +176,9 @@
 			);
 			dependencies = (
 				865819498A8B334D187CFA02 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A1C0DA7E5EB0A11C0A55E701 /* LCD Date */,
 			);
 			name = "LCD Date";
 			packageProductDependencies = (
@@ -393,7 +402,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 8W85QPUG6S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -427,7 +436,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 8W85QPUG6S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -462,7 +471,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 8W85QPUG6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LCDDateWidgets/Info.plist;
@@ -495,7 +504,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 8W85QPUG6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LCDDateWidgets/Info.plist;
@@ -526,8 +535,9 @@
 		405EC047A435C12FDB8754E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 8W85QPUG6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "LCD Date";
@@ -545,8 +555,9 @@
 		4CD3D8B6937327C4EFF981DD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 8W85QPUG6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "LCD Date";
