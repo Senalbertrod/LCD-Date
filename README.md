@@ -104,7 +104,7 @@ LCD Date has no accounts, ads, analytics or network code, and asks for no permis
 | Version | What's new |
 | --- | --- |
 | 1.0 | First App Store release. |
-| 1.1 | Now in Spanish: the app, the complication names and the style choices are in Spanish when your Apple Watch is set to Spanish. Day names follow your watch's language, and short day names no longer end with a period (JUE, not JUE.). |
+| 1.1 | LCD Date is now in Spanish. When your Apple Watch is set to Spanish, the app, the complications and the day names show in Spanish. |
 
 ## Author
 
