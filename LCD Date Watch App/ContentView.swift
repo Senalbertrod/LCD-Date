@@ -54,7 +54,7 @@ struct ContentView: View {
                 .foregroundStyle(lcdGreen.opacity(0.7))
             ZStack {
                 // Faint "88/88" behind the digits, like an unlit LCD segment
-                Text("88/88")
+                Text(verbatim: "88/88")
                     .foregroundStyle(lcdDim)
                 Text(dayFirst ? "\(day)/\(month)" : "\(month)/\(day)")
                     .foregroundStyle(lcdGreen)

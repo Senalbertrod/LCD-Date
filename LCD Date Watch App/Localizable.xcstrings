@@ -1,0 +1,46 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "1. Touch and hold your watch face.\n2. Tap Edit, then swipe to Complications.\n3. Tap a slot and choose LCD Date.\n4. Pick Month first (10/01) or Day first (01/10).\n5. Pick a style: slashes, dashes or dots, with the day name and year, or the day name only.\n\nTip: tap the date above to switch the order here.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1. Mantén presionada la carátula.\n2. Toca Editar y desliza hasta Complicaciones.\n3. Toca un espacio y elige LCD Date.\n4. Elige Mes primero (10/01) o Día primero (01/10).\n5. Elige un estilo: barras, guiones o puntos, con el nombre del día y el año, o solo el nombre del día.\n\nConsejo: toca la fecha de arriba para cambiar el orden aquí."
+          }
+        }
+      }
+    },
+    "ADD TO WATCH FACE": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AGREGAR A LA CARÁTULA"
+          }
+        }
+      }
+    },
+    "DAY / MONTH": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DÍA / MES"
+          }
+        }
+      }
+    },
+    "MONTH / DAY": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MES / DÍA"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

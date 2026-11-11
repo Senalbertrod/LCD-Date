@@ -124,8 +124,13 @@ struct DateStyle {
     /// "THURSDAY" in the watch's language.
     func weekday(_ date: Date) -> String { weekdayName(date, format: "EEEE") }
 
-    /// "THU", for the small round complication.
-    func shortWeekday(_ date: Date) -> String { weekdayName(date, format: "EEE") }
+    /// "THU", for the small round complication. (Some languages add a period,
+    /// like Spanish "JUE."; it's dropped so it looks like the English one.)
+    func shortWeekday(_ date: Date) -> String {
+        var name = weekdayName(date, format: "EEE")
+        if name.hasSuffix(".") { name.removeLast() }
+        return name
+    }
 
     private func weekdayName(_ date: Date, format: String) -> String {
         let f = DateFormatter()
@@ -212,9 +217,12 @@ struct MDProvider: AppIntentTimelineProvider {
         // with zeros + day name, with zeros + day name and year,
         // no zeros + day name, no zeros + day name and year.
         // The descriptions use Thursday, October 1, 2026 as the example.
+        // The label and the day name follow the watch's language ("Mes primero Jueves 10/01").
+        let thursday = DateStyle.calendar.date(from: DateComponents(year: 2026, month: 10, day: 1, hour: 12)) ?? Date()
+        let dayName = DateStyle().weekday(thursday).capitalized(with: Locale.autoupdatingCurrent)
         var list: [AppIntentRecommendation<DateStyleIntent>] = []
         for order in [listOrder] {
-            let label = order == .monthFirst ? "Month first" : "Day first"
+            let label = order == .monthFirst ? String(localized: "Month first") : String(localized: "Day first")
             for separator in [SeparatorOption.slash, .dash, .dot] {
                 let sep = separator.symbol
                 for zeros in [true, false] {
@@ -222,10 +230,10 @@ struct MDProvider: AppIntentTimelineProvider {
                     let md = order == .monthFirst ? month + sep + day : day + sep + month
                     list.append(AppIntentRecommendation(
                         intent: make(separator, zeros: zeros, weekday: true, order: order),
-                        description: Text(verbatim: "\(label) Thursday \(md)")))
+                        description: Text(verbatim: "\(label) \(dayName) \(md)")))
                     list.append(AppIntentRecommendation(
                         intent: make(separator, zeros: zeros, weekday: false, order: order),
-                        description: Text(verbatim: "\(label) Thursday \(md) 2026")))
+                        description: Text(verbatim: "\(label) \(dayName) \(md) 2026")))
                 }
             }
         }
@@ -360,11 +368,14 @@ struct DayNameProvider: AppIntentTimelineProvider {
     }
 
     func recommendations() -> [AppIntentRecommendation<DayNameIntent>] {
-        [DayNameLength.full, .short].map { length in
+        // "Day name SATURDAY" / "Day name SAT", in the watch's language.
+        let saturday = DateStyle.calendar.date(from: DateComponents(year: 2026, month: 10, day: 3, hour: 12)) ?? Date()
+        let label = String(localized: "Day name")
+        return [DayNameLength.full, .short].map { length in
             let intent = DayNameIntent()
             intent.length = length
-            return AppIntentRecommendation(intent: intent,
-                                           description: Text(verbatim: length == .full ? "Day name SATURDAY" : "Day name SAT"))
+            let name = length == .full ? DateStyle().weekday(saturday) : DateStyle().shortWeekday(saturday)
+            return AppIntentRecommendation(intent: intent, description: Text(verbatim: "\(label) \(name)"))
         }
     }
 }

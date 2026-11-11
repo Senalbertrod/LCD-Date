@@ -1,0 +1,236 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "Choose how the month, day and year look.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elige cómo se ven el mes, el día y el año."
+          }
+        }
+      }
+    },
+    "Choose the full day name or the short one.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elige el nombre completo del día o el corto."
+          }
+        }
+      }
+    },
+    "Dash  10-01": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guion  10-01"
+          }
+        }
+      }
+    },
+    "Date Style": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estilo de fecha"
+          }
+        }
+      }
+    },
+    "Day Name": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nombre del día"
+          }
+        }
+      }
+    },
+    "Day first": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Día primero"
+          }
+        }
+      }
+    },
+    "Day first  01/10": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Día primero  01/10"
+          }
+        }
+      }
+    },
+    "Day name": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nombre del día"
+          }
+        }
+      }
+    },
+    "Day name  Thursday 10/01": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nombre del día  Jueves 10/01"
+          }
+        }
+      }
+    },
+    "Day name + year  Thursday 10/01 2026": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nombre del día + año  Jueves 10/01 2026"
+          }
+        }
+      }
+    },
+    "Dot  10.01": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Punto  10.01"
+          }
+        }
+      }
+    },
+    "Full name  SATURDAY": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nombre completo  SÁBADO"
+          }
+        }
+      }
+    },
+    "Leading zeros": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ceros a la izquierda"
+          }
+        }
+      }
+    },
+    "Month first": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mes primero"
+          }
+        }
+      }
+    },
+    "Month first  10/01": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mes primero  10/01"
+          }
+        }
+      }
+    },
+    "Order": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Orden"
+          }
+        }
+      }
+    },
+    "Separator": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Separador"
+          }
+        }
+      }
+    },
+    "Short  SAT": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corto  SÁB"
+          }
+        }
+      }
+    },
+    "Show": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar"
+          }
+        }
+      }
+    },
+    "Slash  10/01": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Barra  10/01"
+          }
+        }
+      }
+    },
+    "Today's date as numbers, day first, retro style.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La fecha de hoy en números, con el día primero, estilo retro."
+          }
+        }
+      }
+    },
+    "Today's date as numbers, month first, retro style.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La fecha de hoy en números, con el mes primero, estilo retro."
+          }
+        }
+      }
+    },
+    "Today's day of the week, retro style.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El día de la semana de hoy, con estilo retro."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
